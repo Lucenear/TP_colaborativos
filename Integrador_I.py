@@ -1,7 +1,15 @@
 # Se eliminan los prefijos y al hexadecimal se lo convierte en mayuscululas
 
 def decimal_a_binario(decimal):
-    return bin(decimal)[2:]
+    binario = ''
+    if decimal == 0:
+        return '0'
+    while decimal > 0:
+        residuo = decimal % 2
+        binario = str(residuo) + binario
+        decimal = decimal // 2
+    print (f"PASADO: {binario}")   
+    return binario
 
 def decimal_a_octal(decimal):
     return oct(decimal)[2:]
