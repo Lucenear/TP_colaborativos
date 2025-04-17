@@ -1,5 +1,3 @@
-# Se eliminan los prefijos y al hexadecimal se lo convierte en mayuscululas
-
 def decimal_a_binario(decimal):
     binario = ''
     if decimal == 0:
@@ -7,15 +5,32 @@ def decimal_a_binario(decimal):
     while decimal > 0:
         residuo = decimal % 2
         binario = str(residuo) + binario
-        decimal = decimal // 2
-    print (f"PASADO: {binario}")   
+        decimal = decimal // 2 
     return binario
 
 def decimal_a_octal(decimal):
-    return oct(decimal)[2:]
+    octal = ''
+    if decimal == 0:
+        return '0'
+    while decimal > octal:
+        residuo = decimal % 8 
+        octal = str(residuo) + octal
+        decimal = decimal // 8
 
 def decimal_a_hex(decimal):
-    return hex(decimal)[2:].upper()
+    hexadecimal = ''
+    digitos_hex = '0123456789ABCDEF' #cadena de valores . Indeces del 0 al 15
+    
+    if decimal == 0:
+        return '0'
+    
+    while decimal > 0:
+        residuo = decimal % 16 #me da el indice entre 0 y 15
+        hexadecimal = digitos_hex[residuo] + hexadecimal #uso el indice del residuo y busco en lista
+
+        decimal = decimal // 16
+    
+    return hexadecimal.upper()
 
 def decimal_a_decimal(decimal):
     return str(decimal)
