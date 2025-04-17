@@ -12,10 +12,11 @@ def decimal_a_octal(decimal):
     octal = ''
     if decimal == 0:
         return '0'
-    while decimal > octal:
+    while decimal > 0:
         residuo = decimal % 8 
         octal = str(residuo) + octal
         decimal = decimal // 8
+    return octal
 
 def decimal_a_hex(decimal):
     hexadecimal = ''
@@ -26,7 +27,7 @@ def decimal_a_hex(decimal):
     
     while decimal > 0:
         residuo = decimal % 16 #me da el indice entre 0 y 15
-        hexadecimal = digitos_hex[residuo] + hexadecimal #uso el indice del residuo y busco en lista
+        hexadecimal = digitos_hex[residuo] + hexadecimal #uso el indice del residuo y recorro la cadena
 
         decimal = decimal // 16
     
@@ -35,7 +36,7 @@ def decimal_a_hex(decimal):
 def decimal_a_decimal(decimal):
     return str(decimal)
 
-# Diccionario de las funciones de conversion anterior
+# Diccionario de las funciones a la que se va a convertir
 
 funciones_conversion = {
     2: decimal_a_binario,
@@ -44,7 +45,7 @@ funciones_conversion = {
     16: decimal_a_hex
 }
 
-# Diccionario del menu con su base correspondiente
+# Diccionario del menu con su base correspondiente. Opcion del menu + base
 
 tipos_conversion = {
     '1': ('Decimal', 10),
@@ -74,7 +75,7 @@ while True:
     # Extraigo el tipo de conversion seleccionado en el menu
     origen_nombre, origen_base = tipos_conversion[menu_opciones]
     
-    # Destinos de la conversion y se excluye la opcion origen 
+    # Destino de la conversion y se excluye la opcion origen 
     destino_conversion = []
     for opcion in tipos_conversion:
         if opcion != menu_opciones:
@@ -84,8 +85,8 @@ while True:
     print("\nSelecciona el tipo de conversion:")
     for i, (name, base) in enumerate(destino_conversion, 1):
         print(f"{i}. {name}")
-    
-    # Se captura la opcion elegida por el usuario
+        
+    # Se captura la opcion elegida
     opcion_elegida = input("Elegi una opcion (1-3): ")
     
     # Se convierte a int y resta 1 al indice para que comience en 0
