@@ -3,6 +3,11 @@
 **Materias:** Matemáticas y Programación I  
 
 ## Integrantes:
-- Ducoli, Maximiliano  
-- Farias, Gustavo  
-- Elizondo, Iñaki
+- Ducoli, Maximiliano
+- Elizondo, Iñaki 
+- Farias, Gustavo
+- Fernandez Jara, Thiago Francisco
+- Galeano, Juan Pablo
+
+
+
