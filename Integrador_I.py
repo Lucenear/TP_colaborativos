@@ -45,7 +45,7 @@ funciones_conversion = {
     16: decimal_a_hex
 }
 
-# Diccionario del menu con su base correspondiente. Opcion del menu + base
+# Diccionario del menu con su base correspondiente. Dos elementos (menu + base)
 
 tipos_conversion = {
     '1': ('Decimal', 10),
@@ -83,13 +83,13 @@ while True:
     
     # Lista las opciones disponibles en base a la logica anterior
     print("\nSelecciona el tipo de conversion:")
-    for i, (name, base) in enumerate(destino_conversion, 1):
-        print(f"{i}. {name}")
+    for i, (nombre, base) in enumerate(destino_conversion, 1):
+        print(f"{i}. {nombre}")
         
     # Se captura la opcion elegida
     opcion_elegida = input("Elegi una opcion (1-3): ")
     
-    # Se convierte a int y resta 1 al indice para que comience en 0
+    # Se convierte a int y resta 1 al indice para que comience en 0 y coincida con la lista de destinos
     opcion_indice = int(opcion_elegida) - 1
     
     # Se obtiene el nombre y la base destino de la conversion
