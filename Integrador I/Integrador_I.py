@@ -87,7 +87,6 @@ funciones_conversion = {
     8: decimal_a_octal,
     10: decimal_a_decimal,
     16: decimal_a_hex
-
 }
 
 # Diccionario del menu con su base correspondiente. Dos elementos (menu + base)
@@ -103,23 +102,29 @@ opcion_exit = '5'
 # Bucle principal del conversor
 while True:
     # Se imprime el menu principal
-    print("\nMenu Principal:")
+    print("\nMenu Principal:\n")
     # Se imprime el menu de opciones
     print("1. Decimal")
     print("2. Binario")
     print("3. Octal")
     print("4. Hexadecimal")
     print("5. Salir")
+    
     # Se captura la opcion elegida
-    menu_opciones = input("Elegi el tipo de numero origen (1-5): ")
+    menu_opciones = input("\nElegi el tipo de numero origen (1-5): ")
     
     # Salida del sistema con la opcion 5
     if menu_opciones == opcion_exit:
         # Mensaje de despedida
-        print("Gracias, vuelva pronto...")
+        print("\nGracias, vuelva pronto...\n")
         # Se sale del bucle
         break
-    
+
+    # Si la opcion elegida no se encuenttra dentro de los tipos de conversion, imprime mensaje y comienza nuevamente el bucle
+    if menu_opciones not in tipos_conversion:
+        print("\nOpcion invalida. Comencemos de nuevo por favor.")
+        continue
+
     # Extraigo el tipo de conversion seleccionado en el menu
     origen_nombre, origen_base = tipos_conversion[menu_opciones]
     
@@ -133,34 +138,36 @@ while True:
             destino_conversion.append(tipos_conversion[opcion])
     
     # Lista las opciones disponibles en base a la logica anterior
-    print("\nSelecciona el tipo de conversion:")
+    print("\nSelecciona el tipo de conversion:\n")
     for i, (nombre, base) in enumerate(destino_conversion, 1):
         print(f"{i}. {nombre}")
         
     # Se captura la opcion elegida
-    opcion_elegida = input("Elegi una opcion (1-3): ")
+    opcion_elegida = input("\nElegi una opcion (1-3): ")
     
+    # Si la opcion elegida NO sea un digito, o la opcion es menor a 1 o mayor a la cantidad de opciones disponibles, arroja mensaje y comienza nuevamente el ciclo.
+    if not opcion_elegida.isdigit() or int(opcion_elegida) < 1 or int(opcion_elegida) > len(destino_conversion):
+        print("\nOpcion invalida. Comencemos de nuevo por favor")
+        continue
+
     # Se convierte a int y resta 1 al indice para que comience en 0 y coincida con la lista de destinos. Sino, me paso 1
     opcion_indice = int(opcion_elegida) - 1
     
     # Se obtiene el nombre y la base destino de la conversion
     destino_nombre, destino_base = destino_conversion[opcion_indice]
     
-    # Se eliminan espacios de la entrada
-    # num_str = input(f"Ingresa el numero en formato {origen_nombre}: ").strip()
-
     #Armamos bucle para validar espacios en blanco o que sean caracteres permitidos
     while True:
         # Se captura el numero en formato de origen
-        num_str = input(f"Ingresa el numero en formato {origen_nombre}: ").strip()
+        num_str = input(f"\nIngresa el numero en formato {origen_nombre}: ").strip()
         # Comprueba si el campo esta vacio o si no es valido
         if num_str == '':
             # Si el campo esta vacio, se imprime un mensaje
-            print("El campo no puede estar vacio")
+            print("\nEl campo no puede estar vacio")
         # Si el campo tiene caracteres no permitidos, se imprime un mensaje
         elif not validar_caracteres(num_str, origen_base):
             # Se imprime un mensaje de error
-            print(f"No se permite el ingreso de dichos caracteres para la base {origen_nombre}. Intenta de nuevo")
+            print(f"\nNo se permite el ingreso de dichos caracteres para la base {origen_nombre}. Intenta de nuevo")
         else:
             # Si el campo es valido, se sale del bucle
             break
@@ -171,4 +178,4 @@ while True:
     # Imprime el resultado final de la converion
     resultado = funciones_conversion[destino_base](valor_decimal)
     # Se imprime el resultado de la conversion
-    print(f"\nEl resultado de la conversion de {origen_nombre} a {destino_nombre} es: {resultado}\n")
+    print(f"\nEl resultado de la conversion de {origen_nombre} a {destino_nombre} es: {resultado}")
